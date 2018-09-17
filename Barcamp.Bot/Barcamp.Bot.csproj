@@ -5,4 +5,14 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Barcamp.Bot.Core\Barcamp.Bot.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Telegram_Token">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
