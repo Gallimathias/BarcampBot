@@ -17,7 +17,6 @@ namespace Barcamp.Bot.Core
     {
         private readonly DefaultCommandManager<string, BotCommandArgs, bool> manager;
         private readonly TelegramBotClient telegramBot;
-        private static BarcampList BarcampList;
 
         public BarcampBot()
         {
@@ -25,12 +24,29 @@ namespace Barcamp.Bot.Core
             telegramBot = new TelegramBotClient(File.ReadAllText("Telegram_Token").Trim());
 
             telegramBot.OnMessage += TelegramBotOnMessage;
+            telegramBot.OnInlineQuery += TelegramBotOnInlineQuery;
+            telegramBot.OnCallbackQuery += TelegramBotOnCallbackQuery;
         }
 
+        private void TelegramBotOnCallbackQuery(object sender, CallbackQueryEventArgs e)
+        {
+            var data = e.CallbackQuery.Data;
+            var index = data.IndexOf(' ');
+            var command = data.Substring(0, index).TrimStart('!');
+            var args = data.Substring(index, data.Length - index).Trim();
+
+            manager.DispatchAsync(command, new BotCommandArgs(telegramBot, e.CallbackQuery.Message)
+            {
+                IsQuery = true,
+                QueryData = args
+            });
+        }
+
+        private void TelegramBotOnInlineQuery(object sender, InlineQueryEventArgs e)
+            => throw new NotImplementedException();
 
         public void Start()
         {
-            InitBarcampList();
             telegramBot.StartReceiving();
         }
 
@@ -44,22 +60,18 @@ namespace Barcamp.Bot.Core
             if (e.Message.Type != MessageType.Text)
                 return;
 
-            var command = e.Message.Text.Split().FirstOrDefault(s => s.StartsWith("/"))?.Trim().TrimStart('/');
+            var command = e.Message
+                .Text
+                .Split()
+                .FirstOrDefault(s => s.StartsWith("/"))?
+                .Trim()
+                .TrimStart('/')
+                .ToLower();
 
             if (string.IsNullOrWhiteSpace(command))
                 return;
 
             manager.DispatchAsync(command, new BotCommandArgs(telegramBot, e.Message));
-        }
-
-        public static void InitBarcampList()
-        {
-            var client = new HttpClient();
-            var str = client.GetAsync("https://www.barcamp-liste.de/").Result.Content.ReadAsStringAsync().Result;
-            var doc = new HtmlDocument();
-            doc.LoadHtml(str);
-
-            BarcampList = new BarcampList(doc);
         }
     }
 }
