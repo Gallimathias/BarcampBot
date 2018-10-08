@@ -9,6 +9,11 @@ namespace BarcampBot.Database
     {
         public DbSet<Barcamp> Barcamps { get; set; }
 
+        public Database(DbContextOptions options) : base(options)
+        {
+
+        }
+
         public abstract Database GetEnsureDatabase(string source);
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
