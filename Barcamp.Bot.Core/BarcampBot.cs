@@ -1,8 +1,11 @@
-﻿using CommandManagementSystem;
+﻿using Barcamp.Bot.Core.Commands;
+using CommandManagementSystem;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using Telegram.Bot;
 using Telegram.Bot.Args;
@@ -21,8 +24,26 @@ namespace Barcamp.Bot.Core
             telegramBot = new TelegramBotClient(File.ReadAllText("Telegram_Token").Trim());
 
             telegramBot.OnMessage += TelegramBotOnMessage;
+            telegramBot.OnInlineQuery += TelegramBotOnInlineQuery;
+            telegramBot.OnCallbackQuery += TelegramBotOnCallbackQuery;
         }
 
+        private void TelegramBotOnCallbackQuery(object sender, CallbackQueryEventArgs e)
+        {
+            var data = e.CallbackQuery.Data;
+            var index = data.IndexOf(' ');
+            var command = data.Substring(0, index).TrimStart('!');
+            var args = data.Substring(index, data.Length - index).Trim();
+
+            manager.DispatchAsync(command, new BotCommandArgs(telegramBot, e.CallbackQuery.Message)
+            {
+                IsQuery = true,
+                QueryData = args
+            });
+        }
+
+        private void TelegramBotOnInlineQuery(object sender, InlineQueryEventArgs e)
+            => throw new NotImplementedException();
 
         public void Start()
         {
@@ -39,7 +60,13 @@ namespace Barcamp.Bot.Core
             if (e.Message.Type != MessageType.Text)
                 return;
 
-            var command = e.Message.Text.Split().FirstOrDefault(s => s.StartsWith("/"))?.Trim().TrimStart('/');
+            var command = e.Message
+                .Text
+                .Split()
+                .FirstOrDefault(s => s.StartsWith("/"))?
+                .Trim()
+                .TrimStart('/')
+                .ToLower();
 
             if (string.IsNullOrWhiteSpace(command))
                 return;

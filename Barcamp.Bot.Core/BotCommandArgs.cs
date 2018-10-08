@@ -10,6 +10,8 @@ namespace Barcamp.Bot.Core
     {
         public TelegramBotClient TelegramBot { get; }
         public Message Message { get; }
+        public string QueryData { get; internal set; }
+        public bool IsQuery { get; internal set; }
 
         public BotCommandArgs(TelegramBotClient telegramBot, Message message)
         {
