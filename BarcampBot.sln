@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarcampBot", "BarcampBot\BarcampBot.csproj", "{E26FCBBD-535E-4734-82BE-1826C99D8244}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarcampBot.Core", "BarcampBot.Core\BarcampBot.Core.csproj", "{935606EE-4291-4F84-B32A-91664C756994}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarcampBot.Database", "BarcampBot.Database\BarcampBot.Database.csproj", "{3EA949B2-2BD7-41C4-9104-4B811DFF7619}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarcampBot.Database.Sqlite", "BarcampBot.Database.Sqlite\BarcampBot.Database.Sqlite.csproj", "{089D9C91-C22A-4DDE-B084-A382919EF68A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BarcampBot.Runtime", "BarcampBot.Runtime\BarcampBot.Runtime.csproj", "{321668F0-E45C-4204-A799-F7BCF94357ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E26FCBBD-535E-4734-82BE-1826C99D8244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E26FCBBD-535E-4734-82BE-1826C99D8244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E26FCBBD-535E-4734-82BE-1826C99D8244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E26FCBBD-535E-4734-82BE-1826C99D8244}.Release|Any CPU.Build.0 = Release|Any CPU
+		{935606EE-4291-4F84-B32A-91664C756994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{935606EE-4291-4F84-B32A-91664C756994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{935606EE-4291-4F84-B32A-91664C756994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{935606EE-4291-4F84-B32A-91664C756994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EA949B2-2BD7-41C4-9104-4B811DFF7619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA949B2-2BD7-41C4-9104-4B811DFF7619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA949B2-2BD7-41C4-9104-4B811DFF7619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA949B2-2BD7-41C4-9104-4B811DFF7619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{089D9C91-C22A-4DDE-B084-A382919EF68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{089D9C91-C22A-4DDE-B084-A382919EF68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{089D9C91-C22A-4DDE-B084-A382919EF68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{089D9C91-C22A-4DDE-B084-A382919EF68A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{321668F0-E45C-4204-A799-F7BCF94357ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{321668F0-E45C-4204-A799-F7BCF94357ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{321668F0-E45C-4204-A799-F7BCF94357ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{321668F0-E45C-4204-A799-F7BCF94357ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7D9AB80-FA33-4E59-8259-BF43BAC57184}
+	EndGlobalSection
+EndGlobal

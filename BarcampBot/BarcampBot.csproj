@@ -6,7 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Barcamp.Bot.Core\Barcamp.Bot.Core.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="NLog" Version="4.5.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BarcampBot.Runtime\BarcampBot.Runtime.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,10 +1,12 @@
-﻿using HtmlAgilityPack;
+﻿using BarcampBot.Core;
+using BarcampBot.Database;
+using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Barcamp.Bot.Core
+namespace BarcampBot.Runtime
 {
     public class BarcampList : List<Barcamp>
     {

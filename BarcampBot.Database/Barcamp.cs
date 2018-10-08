@@ -1,11 +1,18 @@
-﻿using System;
+﻿using BarcampBot.Core;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Barcamp.Bot.Core
+namespace BarcampBot.Database
 {
     public class Barcamp
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
         public string Titel { get; set; }
         public CostCategory Cost { get; set; }
 
@@ -14,7 +21,7 @@ namespace Barcamp.Bot.Core
         public string Hashtag { get; set; }
         public string Twitter { get; set; }
         public string Facebook { get; set; }
-        public LocationTime Time { get; internal set; }
+        public LocationTime Time { get; set; }
 
         public override string ToString() => Titel + " " + Time;
 
