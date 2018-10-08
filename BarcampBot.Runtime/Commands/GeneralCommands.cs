@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Barcamp.Bot.Runtime.Commands
+namespace BarcampBot.Runtime.Commands
 {
     public static class GeneralCommands
     {

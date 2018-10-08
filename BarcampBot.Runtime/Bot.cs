@@ -1,5 +1,4 @@
-﻿using Barcamp.Bot.Core.Commands;
-using CommandManagementSystem;
+﻿using CommandManagementSystem;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
@@ -11,14 +10,14 @@ using Telegram.Bot;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types.Enums;
 
-namespace Barcamp.Bot.Runtime
+namespace BarcampBot.Runtime
 {
-    public class BarcampBot
+    public class Bot
     {
         private readonly DefaultCommandManager<string, BotCommandArgs, bool> manager;
         private readonly TelegramBotClient telegramBot;
 
-        public BarcampBot()
+        public Bot()
         {
             manager = new DefaultCommandManager<string, BotCommandArgs, bool>(GetType().Namespace + ".Commands");
             telegramBot = new TelegramBotClient(File.ReadAllText("Telegram_Token").Trim());

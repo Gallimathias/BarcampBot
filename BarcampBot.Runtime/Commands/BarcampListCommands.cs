@@ -8,7 +8,7 @@ using System.Text;
 using System.Xml;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace Barcamp.Bot.Runtime.Commands
+namespace BarcampBot.Runtime.Commands
 {
     public static class BarcampListCommands
     {

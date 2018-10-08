@@ -4,7 +4,7 @@ using System.Text;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace Barcamp.Bot.Runtime
+namespace BarcampBot.Runtime
 {
     public class BotCommandArgs
     {

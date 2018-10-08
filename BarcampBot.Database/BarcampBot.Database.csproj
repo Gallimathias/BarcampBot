@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Barcamp.Bot.Core\Barcamp.Bot.Core.csproj" />
+    <ProjectReference Include="..\BarcampBot.Core\BarcampBot.Core.csproj" />
   </ItemGroup>
 
 </Project>

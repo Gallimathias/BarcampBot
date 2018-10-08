@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Barcamp.Bot.Core
+namespace BarcampBot.Core
 {
     public class LocationTime
     {

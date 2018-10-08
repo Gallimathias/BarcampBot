@@ -1,18 +1,18 @@
-﻿using Barcamp.Bot.Core;
-using System;
+﻿using System;
 using System.Threading;
+using BarcampBot.Runtime;
 
-namespace Barcamp.Bot
+namespace BarcampBot
 {
     internal class Program
     {
         private static ManualResetEventSlim resetEvent;
-        private static BarcampBot bot;
+        private static Bot bot;
 
         private static void Main(string[] args)
         {
             resetEvent = new ManualResetEventSlim(false);
-            bot = new BarcampBot();
+            bot = new Bot();
 
             Console.CancelKeyPress += ConsoleCancelKeyPress;
             Console.WriteLine("Initialization complete....");

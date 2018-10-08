@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Barcamp.Bot.Database
+namespace BarcampBot.Database
 {
     public abstract class Database : DbContext
     {

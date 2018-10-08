@@ -1,11 +1,11 @@
-﻿using Barcamp.Bot.Core;
+﻿using BarcampBot.Core;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Barcamp.Bot.Database
+namespace BarcampBot.Database
 {
     public class Barcamp
     {
@@ -21,7 +21,7 @@ namespace Barcamp.Bot.Database
         public string Hashtag { get; set; }
         public string Twitter { get; set; }
         public string Facebook { get; set; }
-        public LocationTime Time { get; internal set; }
+        public LocationTime Time { get; set; }
 
         public override string ToString() => Titel + " " + Time;
 
