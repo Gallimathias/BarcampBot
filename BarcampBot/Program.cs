@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Threading;
 using BarcampBot.Runtime;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
 
 namespace BarcampBot
 {
@@ -8,24 +11,34 @@ namespace BarcampBot
     {
         private static ManualResetEventSlim resetEvent;
         private static Bot bot;
+        private static Logger logger;
 
         private static void Main(string[] args)
         {
             resetEvent = new ManualResetEventSlim(false);
+            var config = new LoggingConfiguration();
+            config.AddRule(LogLevel.Info, LogLevel.Fatal, new FileTarget("logfile") { FileName = "barcamp.log" });
+            config.AddRule(LogLevel.Info, LogLevel.Fatal, new ConsoleTarget("console"));
+            LogManager.Configuration = config;
+            logger = LogManager.GetCurrentClassLogger();
+            logger.Info("Logger is initialized");
+
             bot = new Bot();
 
             Console.CancelKeyPress += ConsoleCancelKeyPress;
-            Console.WriteLine("Initialization complete....");
-            Console.WriteLine("Start bot....");
+            logger.Info("Initialization complete....");
+            logger.Info("Start bot....");
 
             bot.Start();
             resetEvent.Wait();
+            logger.Info("Bot was terminated. Close program.");
+            LogManager.Shutdown();
         }
 
         private static void ConsoleCancelKeyPress(object sender, ConsoleCancelEventArgs e)
         {
-            Console.WriteLine("Stop bot....");
-            bot.Stop();
+            logger.Info("Stop bot....");
+            bot.Stop();            
             resetEvent.Set();
         }
     }

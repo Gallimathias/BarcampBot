@@ -1,5 +1,6 @@
 ﻿using CommandManagementSystem;
 using HtmlAgilityPack;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,13 +15,25 @@ namespace BarcampBot.Runtime
 {
     public class Bot
     {
+        private readonly Logger logger;
         private readonly DefaultCommandManager<string, BotCommandArgs, bool> manager;
         private readonly TelegramBotClient telegramBot;
 
         public Bot()
         {
+            logger = LogManager.GetCurrentClassLogger();
             manager = new DefaultCommandManager<string, BotCommandArgs, bool>(GetType().Namespace + ".Commands");
-            telegramBot = new TelegramBotClient(File.ReadAllText("Telegram_Token").Trim());
+            var fileInfo = new FileInfo("Telegram_Token");
+            if (!fileInfo.Exists)
+            {
+                var error = new FileNotFoundException("Can't find telegram token file. Bot cannot be initialized.");
+                error.Data.Add("Path", fileInfo.FullName);
+
+                logger.Fatal(error, "Can't find telegram token file. Bot cannot be initialized.");
+                throw error;
+            }
+
+            telegramBot = new TelegramBotClient(File.ReadAllText(fileInfo.FullName).Trim());
 
             telegramBot.OnMessage += TelegramBotOnMessage;
             telegramBot.OnInlineQuery += TelegramBotOnInlineQuery;
@@ -42,7 +55,13 @@ namespace BarcampBot.Runtime
         }
 
         private void TelegramBotOnInlineQuery(object sender, InlineQueryEventArgs e)
-            => throw new NotImplementedException();
+        {
+            var error = new NotSupportedException("InlineQuery is currently not supported");
+            error.Data.Add("From", e.InlineQuery.From.Username);
+            error.Data.Add("Query", e.InlineQuery.Query);
+            logger.Fatal(error, "InlineQuery is currently not supported");
+            throw error;
+        }
 
         public void Start()
         {
