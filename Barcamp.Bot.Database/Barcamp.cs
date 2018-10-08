@@ -1,11 +1,18 @@
-﻿using System;
+﻿using Barcamp.Bot.Core;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace Barcamp.Bot.Core
+namespace Barcamp.Bot.Database
 {
     public class Barcamp
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
         public string Titel { get; set; }
         public CostCategory Cost { get; set; }
 

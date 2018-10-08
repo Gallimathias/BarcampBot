@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Barcamp.Bot.Core
+namespace Barcamp.Bot.Runtime
 {
     public class BarcampList : List<Barcamp>
     {

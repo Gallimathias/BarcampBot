@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Barcamp.Bot.Core\Barcamp.Bot.Core.csproj" />
+    <ProjectReference Include="..\Barcamp.Bot.Runtime\Barcamp.Bot.Runtime.csproj" />
   </ItemGroup>
 
   <ItemGroup>
