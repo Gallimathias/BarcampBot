@@ -1,4 +1,6 @@
-﻿using CommandManagementSystem.Attributes;
+﻿using BarcampBot.Database;
+using BarcampBot.IoC.Locators;
+using CommandManagementSystem.Attributes;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
@@ -13,9 +15,12 @@ namespace BarcampBot.Runtime.Commands
     public static class BarcampListCommands
     {
         private static readonly BarcampList barcampList;
+        private static readonly BaseDatabaseService databaseService;
 
         static BarcampListCommands()
         {
+            databaseService = CoreServiceLocator.GetServiceInstance<BaseDatabaseService>();
+            
             var client = new HttpClient();
             var str = client
                 .GetAsync("https://www.barcamp-liste.de/")

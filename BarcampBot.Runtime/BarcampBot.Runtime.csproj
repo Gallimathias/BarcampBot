@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BarcampBot.Core\BarcampBot.Core.csproj" />
     <ProjectReference Include="..\BarcampBot.Database\BarcampBot.Database.csproj" />
+    <ProjectReference Include="..\BarcampBot.IoC\BarcampBot.IoC.csproj" />
   </ItemGroup>
 
 </Project>

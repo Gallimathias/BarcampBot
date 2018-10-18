@@ -9,6 +9,10 @@ namespace BarcampBot.Database.Sqlite
     {
         static SqliteDatabase() => SQLitePCL.Batteries.Init();
 
+        public SqliteDatabase(): base()
+        {
+
+        }
         public SqliteDatabase(DbContextOptions options) : base(options)
         {
         }

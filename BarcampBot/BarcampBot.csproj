@@ -5,12 +5,18 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="NLog" Version="4.5.10" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BarcampBot.Database.Sqlite\BarcampBot.Database.Sqlite.csproj" />
+    <ProjectReference Include="..\BarcampBot.IoC\BarcampBot.IoC.csproj" />
     <ProjectReference Include="..\BarcampBot.Runtime\BarcampBot.Runtime.csproj" />
   </ItemGroup>
 
