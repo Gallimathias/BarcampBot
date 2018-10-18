@@ -1,4 +1,6 @@
-﻿using CommandManagementSystem;
+﻿using BarcampBot.Database;
+using BarcampBot.IoC.Locators;
+using CommandManagementSystem;
 using HtmlAgilityPack;
 using NLog;
 using System;
@@ -38,6 +40,7 @@ namespace BarcampBot.Runtime
             telegramBot.OnMessage += TelegramBotOnMessage;
             telegramBot.OnInlineQuery += TelegramBotOnInlineQuery;
             telegramBot.OnCallbackQuery += TelegramBotOnCallbackQuery;
+
         }
 
         private void TelegramBotOnCallbackQuery(object sender, CallbackQueryEventArgs e)

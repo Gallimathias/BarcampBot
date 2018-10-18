@@ -21,7 +21,7 @@ namespace BarcampBot.Database
         public string Hashtag { get; set; }
         public string Twitter { get; set; }
         public string Facebook { get; set; }
-        public LocationTime Time { get; set; }
+        public virtual LocationTime Time { get; set; }
 
         public override string ToString() => Titel + " " + Time;
 

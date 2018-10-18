@@ -12,7 +12,12 @@ namespace BarcampBot.Runtime
     {
         public BarcampList(HtmlDocument document)
         {
-            var list = document.GetElementbyId("liste").ChildNodes["div"].ChildNodes["div"].ChildNodes.Where(h => h.HasClass("item"));
+            var list = document
+                .GetElementbyId("liste")
+                .ChildNodes["div"]
+                .ChildNodes["div"]
+                .ChildNodes
+                .Where(h => h.HasClass("item"));
 
             ConvertList(list);
         }

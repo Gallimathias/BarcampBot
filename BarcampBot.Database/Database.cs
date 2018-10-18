@@ -9,6 +9,10 @@ namespace BarcampBot.Database
     {
         public DbSet<Barcamp> Barcamps { get; set; }
 
+        public Database() : base()
+        {
+                
+        }
         public Database(DbContextOptions options) : base(options)
         {
 
