@@ -14,35 +14,22 @@ namespace BarcampBot.Runtime.Commands
 {
     public static class BarcampListCommands
     {
-        private static readonly BarcampList barcampList;
         private static readonly BaseDatabaseService databaseService;
 
         static BarcampListCommands()
         {
             databaseService = CoreServiceLocator.GetServiceInstance<BaseDatabaseService>();
-            
-            var client = new HttpClient();
-            var str = client
-                .GetAsync("https://www.barcamp-liste.de/")
-                .Result
-                .Content
-                .ReadAsStringAsync()
-                .Result;
-
-            var doc = new HtmlDocument();
-            doc.LoadHtml(str);
-
-            barcampList = new BarcampList(doc);
         }
 
         [Command("all")]
         public static bool All(BotCommandArgs args)
         {
             var buttons = new List<InlineKeyboardButton[]>();
+            var barcamps = databaseService.Database.Barcamps.Where(b => b.Time.To >= DateTime.Now).ToList();
 
-            for (int i = 0; i < barcampList.Count; i++)
+            for (int i = 0; i < barcamps.Count; i++)
             {
-                var camp = barcampList[i];
+                var camp = barcamps[i];
                 buttons.Add(new[] {new InlineKeyboardButton()
                 {
                     Text = camp.Titel,

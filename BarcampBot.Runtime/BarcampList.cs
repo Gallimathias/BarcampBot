@@ -1,5 +1,4 @@
-﻿using BarcampBot.Core;
-using BarcampBot.Database;
+﻿using BarcampBot.Database;
 using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;

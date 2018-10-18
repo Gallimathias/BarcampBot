@@ -28,6 +28,7 @@ namespace BarcampBot
 
             //Initialize Bot
             barcampHandler = new BarcampListHandler();
+            barcampHandler.RefreshList();
             bot = new Bot();
 
             Console.CancelKeyPress += ConsoleCancelKeyPress;
@@ -63,7 +64,8 @@ namespace BarcampBot
         private static void ConsoleCancelKeyPress(object sender, ConsoleCancelEventArgs e)
         {
             logger.Info("Stop bot....");
-            bot.Stop();            
+            bot.Stop();
+            barcampHandler.Dispose();
             resetEvent.Set();
         }
     }

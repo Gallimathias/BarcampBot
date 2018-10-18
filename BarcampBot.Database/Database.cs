@@ -8,6 +8,7 @@ namespace BarcampBot.Database
     public abstract class Database : DbContext
     {
         public DbSet<Barcamp> Barcamps { get; set; }
+        public DbSet<LocationTime> LocationTimes { get; set; }
 
         public Database() : base()
         {
