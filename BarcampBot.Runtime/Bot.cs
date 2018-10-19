@@ -43,18 +43,25 @@ namespace BarcampBot.Runtime
 
         }
 
-        private void TelegramBotOnCallbackQuery(object sender, CallbackQueryEventArgs e)
+        private async void TelegramBotOnCallbackQuery(object sender, CallbackQueryEventArgs e)
         {
             var data = e.CallbackQuery.Data;
             var index = data.IndexOf(' ');
             var command = data.Substring(0, index).TrimStart('!');
             var args = data.Substring(index, data.Length - index).Trim();
 
-            manager.DispatchAsync(command, new BotCommandArgs(telegramBot, e.CallbackQuery.Message)
+            var result = await manager.DispatchAsync(command, new BotCommandArgs(telegramBot, e.CallbackQuery.Message)
             {
                 IsQuery = true,
+                CallbackQuery = e.CallbackQuery,
                 QueryData = args
             });
+
+            if (!result)
+            {
+                await telegramBot.SendTextMessageAsync(e.CallbackQuery.Message.Chat.Id, "Oh, that looks like it didn't work :(");
+                logger.Debug($"User try to execute Query: {command}. [args: {args}] It returns false");
+            }
         }
 
         private void TelegramBotOnInlineQuery(object sender, InlineQueryEventArgs e)
@@ -76,7 +83,7 @@ namespace BarcampBot.Runtime
             telegramBot.StopReceiving();
         }
 
-        private void TelegramBotOnMessage(object sender, MessageEventArgs e)
+        private async void TelegramBotOnMessage(object sender, MessageEventArgs e)
         {
             if (e.Message.Type != MessageType.Text)
                 return;
@@ -92,7 +99,13 @@ namespace BarcampBot.Runtime
             if (string.IsNullOrWhiteSpace(command))
                 return;
 
-            manager.DispatchAsync(command, new BotCommandArgs(telegramBot, e.Message));
+            var result = await manager.DispatchAsync(command, new BotCommandArgs(telegramBot, e.Message));
+
+            if (!result)
+            {
+                await telegramBot.SendTextMessageAsync(e.Message.Chat.Id, "Oh, that looks like it didn't work :(");
+                logger.Debug($"User try to execute Command: {command}. It returns false");
+            }
         }
     }
 }

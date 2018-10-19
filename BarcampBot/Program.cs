@@ -1,12 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Threading;
-using BarcampBot.Database.Sqlite;
+﻿using BarcampBot.Database.Sqlite;
 using BarcampBot.IoC.Locators;
 using BarcampBot.Runtime;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using System;
+using System.IO;
+using System.Threading;
 
 namespace BarcampBot
 {
@@ -54,8 +54,13 @@ namespace BarcampBot
         private static void InitializeLogger()
         {
             var config = new LoggingConfiguration();
+#if DEBUG
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, new FileTarget("logfile") { FileName = "barcamp.log" });
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, new ColoredConsoleTarget("console"));
+#else
             config.AddRule(LogLevel.Info, LogLevel.Fatal, new FileTarget("logfile") { FileName = "barcamp.log" });
             config.AddRule(LogLevel.Info, LogLevel.Fatal, new ColoredConsoleTarget("console"));
+#endif
             LogManager.Configuration = config;
             logger = LogManager.GetCurrentClassLogger();
             logger.Info("Logger is initialized");
